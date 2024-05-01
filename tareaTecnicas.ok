@@ -1,0 +1,698 @@
+// TAREA 1
+// 1. Crea una función nombrada que sume dos números.
+function suma(n1, n2) {
+    let resp
+    resp = n1 + n2
+    return resp
+}
+console.log(suma(2, 3));
+
+// 2. Escribe una función nombrada que reste dos números.
+function resta(n1, n2) {
+    let resp
+    resp = n1 - n2
+    return resp
+}
+console.log(resta(10, 10));
+
+// 3. Desarrolla una función nombrada que multiplique dos números.
+function multiplicacion(n1, n2) {
+    let resp
+    resp = n1 * n2
+    return resp
+}
+console.log(multiplicacion(5, 6));
+
+// 4. Implementa una función nombrada que divida dos números.
+function division(n1, n2) {
+    let resp
+    resp = n1 / n2
+    return resp
+}
+console.log(division(50, 2));
+
+// 5. Diseña una función nombrada que calcule el módulo de dos números
+function modulo(n1, n2) {
+    let resp
+    resp = n1 % n2
+    return resp
+}
+console.log(modulo(50, 2));
+
+// 6. Asigna una función anónima a una variable que eleve un número al cuadrado
+let cuadrado = function (numero) {
+    resp = numero * numero
+    console.log(`El numero ${numero} elevado al cuadrado es:${resp}`);
+    return resp
+}
+cuadrado(4);
+
+// 7. Usa una función anónima para convertir grados Celsius a Fahrenheit.
+let celsiusFahrenheit = function (gradosCelsius) {
+    fahrenheit = (gradosCelsius * 9 / 5) + 32;
+    console.log(`${gradosCelsius} grados Celsius son equivalentes a ${fahrenheit} grados Fahrenheit.`);
+    return fahrenheit;
+};
+celsiusFahrenheit(30)
+
+// 8. Crea una función anónima que calcule el perímetro de un rectángulo.
+let perimetroRect = function (base, altura) {
+    if (base <= 0 || altura <= 0) {
+        console.log(`Los parametros deben ser positivos.`);
+    } else {
+        perimetro = 2 * (base + altura)
+        console.log(`El perimetro del Rectangulo es de:${perimetro}`);
+        return perimetro
+    }
+};
+perimetroRect(5, 3)
+
+// 9. Implementa una función anónima que determine si un número es par o impar
+let parOimpar = function (num) {
+    if (num < 0) {
+        return "El numero debe de ser positivo"
+    }
+    return num % 2 == 0
+}
+console.log(parOimpar(2))
+
+// 10. Escribe una función anónima que devuelva el número mayor entre dos números
+let mayor = function (n1, n2) {
+    if (n1 > n2) {
+        return n1
+    } else {
+        return n2
+    }
+}
+console.log(mayor(10, 2));
+
+// 11. Desarrolla una función flecha que calcule el área de un círculo.
+const area = (radio) => 3.14 * radio * radio;
+const res = area(2);
+console.log(res)
+
+// 12. Crea una función flecha que convierta kilómetros a millas.
+const millas = (Kilometros) => Kilometros * 0.621371;
+const r = millas(50);
+console.log(r)
+
+// 13. Escribe una función flecha que retorne el nombre completo dado un nombre y apellido.
+const nombreComplet = (nombre, apellido) => nombre + " " + apellido;
+const NC = nombreComplet("Jorge", "Castro")
+console.log(NC);
+
+// 14. Implementa una función flecha que verifique si un texto contiene la letra 'a'
+const text = (texto) => {
+    const textoMinuscula = texto.toLowerCase()
+    for (let i = 0; i < textoMinuscula.length; i++) {
+        if (textoMinuscula[i] === "a") {
+            return true
+        }
+    }
+    return false
+}
+const text1 = "JOrge"
+console.log(text(text1))
+
+// 15. Diseña una función flecha que cuente cuántos elementos en un array son números.
+const contarNumeros = (array) => {
+    let contador = 0;
+    for (let i = 0; i < array.length; i++) {
+        if (typeof array[i] === 'number') {
+            contador++;
+        }
+    }
+    return contador;
+}
+const array = [1, 'dos', 3, 'cuatro', 5, 4];
+console.log(contarNumeros(array));
+
+// 16. Escribe una función de orden superior que tome una función y la aplique a todos los elementos de un array
+function aplicarFuncionATodos(array, funcion) {
+    return array.map(funcion);
+}
+//.MAP SE ENCARGA DE PASAR CADA ELEMENTO A LA FUNCION Q PROPORCIONAMOS COMO ARGUMENTO: function(x)
+const array1 = [1, 2, 3, 4, 5];
+const cuadrados = aplicarFuncionATodos(array1, function (x) {
+    return x * x;
+});
+console.log(cuadrados);
+
+// 17. Crea una función de orden superior que filtre elementos de un array basándose en una condición dada.
+function filtrarCondicional(array, condicion) {
+    return array.filter(condicion);
+}
+const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const pares = filtrarCondicional(numeros, function (numero) {
+    return numero % 2 === 0;
+});
+console.log(pares);
+
+// 18. Desarrolla una función de orden superior que retorne una nueva función incrementadora.
+function crearIncrementadora(paso) {
+    return function (numero) {
+        return numero + paso;
+    };
+}
+const incrementarEnDos = crearIncrementadora(2);
+console.log(incrementarEnDos(5));
+console.log(incrementarEnDos(10))
+
+// 19. Implementa una función de orden superior que tome dos funciones como argumentos
+// y elija una para ejecutar basada en una condición.
+function ejecutarCondicionalmente(condicion, funcion1, funcion2) {
+    return function (a, b) {
+        if (condicion(a, b)) {
+            return funcion1(a, b);
+        } else {
+            return funcion2(a, b);
+        }
+    };
+}
+const Suma = (a, b) => a + b;
+const Resta = (a, b) => a - b;
+
+const mayorQueCero = (x, y) => x > 0 && y > 0; // condición
+
+const operacion = ejecutarCondicionalmente(mayorQueCero, Suma, Resta);
+
+console.log(operacion(5, 3));  // (5 + 3)
+console.log(operacion(-2, 7)); // (-2 - 7)
+
+// 20. Diseña una función de orden superior que modifique un objeto utilizando otra función proporcionada.
+function modificarObjeto(objeto, funcionModificadora) {
+    // Llamamos a la función proporcionada pasándole el objeto como argumento
+    funcionModificadora(objeto);
+    // Retornamos el objeto modificado
+    return objeto;
+}
+// Ejemplo de uso
+const persona = {
+    nombre: "Jorge",
+    edad: 20
+}
+function incrementarEdad(persona) {
+    persona.edad++;
+}
+// Llamamos a la función modificarObjeto con el objeto persona y la función incrementarEdad
+modificarObjeto(persona, incrementarEdad);
+console.log(persona);
+
+//21. Define una función constructora para un objeto "Coche" que tenga propiedades como marca, modelo y año.
+function Coche(marca, modelo, año) {
+    this.marca = marca;
+    this.modelo = modelo;
+    this.año = año;
+}
+let miCoche = new Coche("Toyota", "Corolla", 2022);
+console.log(miCoche);
+
+// 22. Crea una función constructora para un objeto "Libro" con propiedades de autor, título y año de publicación.
+function Libro(autor, titulo, añopublicado) {
+    this.autor = autor;
+    this.titulo = titulo;
+    this.añopubic = añopublicado;
+}
+let miLibro = new Libro("William Shakespeare", "Romeo y Julieta", 1595);
+console.log(miLibro);
+
+// 23. Implementa una función constructora que cree objetos "Usuario" con nombre, correo electrónico y contraseña.
+function Usuario(nombre, correoElectronico, contraseña) {
+    this.nombre = nombre;
+    this.correoElectronico = correoElectronico;
+    this.contraseña = contraseña;
+}
+let usuario1 = new Usuario('Jorge', 'jorge@example.com', 'password123');
+console.log(usuario1);
+
+// 24. Escribe una función constructora para "Producto" con propiedades de nombre, precio y cantidad.
+function Producto(nombre, precio, cantidad) {
+    this.nombre = nombre;
+    this.precio = precio;
+    this.cantidad = cantidad;
+}
+let producto = new Producto(`Coca Cola`, `$3.00 Dolares`, `3 Litros`)
+console.log(producto);
+
+// 25. Desarrolla una función constructora que inicialice objetos "Estudiante" con nombre,matrícula y carrera.
+function Estudiante(nombre, matrícula, carrera) {
+    this.nombre = nombre;
+    this.matrícula = matrícula;
+    this.carrera = carrera;
+}
+let estudiante = new Estudiante(`Jorge Castro`, `12345`, `Ing.Software`)
+console.log(estudiante);
+
+// 26. Escribe una función recursiva para calcular el factorial de un número.
+function factorial(n) {
+    if (n == 0) {
+        return 1
+    } else {
+        return factorial(n - 1) * n;
+    }
+}
+console.log(factorial(8));
+
+// 27. Crea una función recursiva que sume todos los números hasta un número dado.
+function suma(n) {
+    if (n == 0) {
+        return 0
+    } else {
+        return n + suma(n - 1)
+    }
+}
+console.log(suma(5));
+
+// 28. Implementa una función recursiva que encuentre el máximo común divisor (MCD) de dos números.
+function gcd(a, b) {
+    if (b === 0) {
+        return a;
+    }
+    else {
+        return gcd(b, a % b);
+    }
+}
+console.log(gcd(36, 24));
+
+// 29. Diseña una función recursiva que genere la secuencia de Fibonacci hasta un número específico.
+function Fibonacci(n) {
+    if (n < 2) {
+        return n
+    } else {
+        return Fibonacci(n - 1) + Fibonacci(n - 2)
+    }
+}
+let Fibo = Fibonacci(11)
+console.log(Fibo);
+
+function fibonacciSequence(n, sequence = [0, 1]) {
+    if (n <= 1) {
+        return [0];
+    }
+    if (sequence.length >= n) {
+        return sequence;
+    }
+    sequence.push(sequence[sequence.length - 1] + sequence[sequence.length - 2]);
+    return fibonacciSequence(n, sequence);
+}
+// Ejemplo de uso
+let fibSequence = fibonacciSequence(11);
+console.log(fibSequence);
+
+// 30. Desarrolla una función recursiva que invierta una cadena de texto.
+function invertirCadena(texto) {
+    if (texto === "" || texto.length === 1) {
+        return texto;
+    }
+    // Caso recursivo: Invertir la subcadena excluyendo el primer carácter y concatenar el primer carácter al final
+    return invertirCadena(texto.slice(1)) + texto[0];
+}
+console.log(invertirCadena("jorge.ok"));
+
+// 31. Demuestra el uso de una variable global modificándola dentro de una función.
+let variableGlobal = 10;
+console.log("Valor de variable global", variableGlobal);
+
+function modificarVariableGlobal() {
+    variableGlobal = 20;
+}
+modificarVariableGlobal();
+console.log("Valor de variable global modificada:", variableGlobal);
+
+// 32. Escribe un código donde una variable local oculte una variable global del mismo nombre.
+let variable = " soy una Variable global";
+
+function mostrarVariable() {
+    let variable = "soy una Variable local";
+    console.log(variable);
+}
+mostrarVariable();
+console.log(variable);
+
+// 33. Explica mediante un ejemplo cómo las variables locales pueden evitar conflictos de nombres.
+function funcion1() {
+    let variable = "Soy una variable local en funcion 1";
+    console.log(variable);
+}
+function funcion2() {
+    let variable = "Soy una variable local en funcion 2";
+    console.log(variable);
+}
+funcion1();
+funcion2();
+console.log(variable);
+
+// 34. Implementa un contador utilizando una variable global.
+let contador = 0;
+function incrementarContador(veces) {
+    for (let i = 0; i < veces; i++) {
+        contador++;
+    }
+}
+incrementarContador(3);
+console.log(contador);
+
+// 35. Crea una función que intente modificar una variable local definida en otra función.
+function original() {
+    let nombre = "Jorge";
+    console.log(nombre);
+    modificar(nombre);
+    console.log(nombre);
+}
+
+function modificar(nombre) {
+    nombre = "Jorge1";
+}
+original()
+
+// 36. Escribe una función que determine si un año es bisiesto
+// Un año es bisiesto si es divisible entre 4 y no es divisible entre 100, o si es divisible entre 400
+function esBisiesto(año) {
+    return (año % 4 === 0 && año % 100 !== 0) || (año % 400 === 0);
+}
+console.log(esBisiesto(2024));
+
+// 37. Implementa una función que evalúe tres números y retorne el mayor.
+function Mayor(n1, n2, n3) {
+    if (n1 > n2 && n1 > n3) {
+        return n1
+    } else if (n2 > n1 && n2 > n3) {
+        return n2
+    } else if (n3 > n1 && n3 > n2) {
+        return n3
+    }
+}
+console.log(Mayor(200, 20, 500));
+
+//38. Diseña una función que decida si un estudiante aprueba o reprueba basado en su nota.
+function Semestre3(calificacion) {
+    return calificacion >= 70 ? "Aprobado" : "Reprobado"
+}
+console.log(Semestre3(71));
+
+//39. Crea una función que clasifique una edad en categorías (niño, adolescente, adulto,anciano).
+function clasificarEdad(edad) {
+    if (edad >= 0 && edad <= 12) {
+        return "Niño";
+    } else if (edad >= 13 && edad <= 17) {
+        return "Adolescente";
+    } else if (edad >= 18 && edad <= 64) {
+        return "Adulto";
+    } else if (edad >= 65) {
+        return "Anciano";
+    } else {
+        return "Edad no válida";
+    }
+}
+console.log(clasificarEdad(19));
+
+//40. Desarrolla una función que verifique si un usuario tiene acceso basado en su edad
+function discoteca(age) {
+    return age >= 18 ? "acceso valido" : "acceso invalido"
+}
+console.log(discoteca(19));
+
+// 41. Escribe un bucle while que cuente de 1 a 100.
+function buclecontar() {
+    let contador = 1;
+    while (contador <= 100) {
+        contador++;
+        console.log(contador);
+    }
+}
+buclecontar()
+
+// 42. Implementa un bucle while que sume los primeros 50 números naturales.
+function buclesumar(rango) {
+    let contador = 0, sumaBucle = 0;
+    while (contador <= rango) {
+        sumaBucle += contador;
+        contador++;
+    }
+    console.log(sumaBucle);
+}
+buclesumar(50)
+
+// 43. Crea un bucle while que repita un saludo hasta que el usuario decida parar.
+
+
+// 44. Desarrolla un bucle while que encuentre el primer número divisible por 7 en un rango.
+function encontrardivisible7(inicio, rango) {
+    let numero = inicio
+    while (numero < rango) {
+        if (numero % 7 === 0) {
+            return numero
+        }
+        numero++
+    }
+    return null
+}
+console.log(encontrardivisible7(10, 20));
+
+// 45. Diseña un bucle while que verifique la entrada del usuario hasta que sea válida.
+function Validate(check) {
+    let cont = 50
+    while (check <= cont) {
+        if (check < 0){
+            return`Ingresa un numero valido`
+        }else{
+            if (check % 5 == 0){
+                let resp = check * 2 
+                return resp
+            }
+            check++
+        }
+        
+    }
+}
+console.log(Validate(32));
+
+//46. Escribe una función que use switch para asignar calificaciones (A, B, C, D, F) basado en puntos.
+function asignarCalificacion(puntos) {
+    let calificacion;
+
+    switch (true) {
+        case puntos >= 90:
+            calificacion = 'A';
+            break;
+        case puntos >= 80:
+            calificacion = 'B';
+            break;
+        case puntos >= 70:
+            calificacion = 'C';
+            break;
+        case puntos >= 60:
+            calificacion = 'D';
+            break;
+        default:
+            calificacion = 'F';
+    }
+
+    return calificacion;
+}
+console.log(asignarCalificacion(60));
+
+// 47. Implementa una función que use switch para responder a diferentes comandos de un chatbot.
+function chatbot(command) {
+    let respuesta;
+
+    switch (command.toLowerCase()) {
+        case "hola":
+            respuesta = "¡Hola! ¿Cómo puedo ayudarte?";
+            break;
+        case "adios":
+            respuesta = "¡Hasta luego! Que tengas un buen día.";
+            break;
+        case "informacion":
+            respuesta = "Soy un chatbot diseñado para ayudarte. ¿En qué puedo asistirte?";
+            break;
+        default:
+            respuesta = "Lo siento, no entendí ese comando. ¿Podrías repetirlo?";
+    }
+
+    return respuesta;
+}
+console.log(chatbot("adios"));
+
+// 48. Crea un switch para manejar diferentes tipos de métodos de pago (efectivo, tarjeta,cheque).
+function procesarPago(metodoPago) {
+    let mensaje;
+
+    switch (metodoPago.toLowerCase()) {
+        case "efectivo":
+            mensaje = "Has seleccionado pagar con efectivo.";
+            break;
+        case "tarjeta":
+            mensaje = "Has seleccionado pagar con tarjeta.";
+            break;
+        case "transferencia":
+            mensaje = "Has seleccionado pagar con transferencia.";
+            break;
+        default:
+            mensaje = "Método de pago no reconocido.";
+    }
+
+    return mensaje;
+}
+console.log(procesarPago("transferencia"));
+
+// 49. Desarrolla una función que utilice switch para realizar cálculos básicos (+, -, *, /).
+function calculadora(signo,n1,n2) {
+    let calculo;
+
+    switch (signo) {
+        case "+":
+            calculo= n1 + n2;
+            break;
+        case "-":
+            calculo = n1 - n2;
+            break;
+        case "*":
+            calculo = n1 * n2;
+            break;
+        case "/":
+           calculo = n1 / n2;
+            break;
+        default:
+            calculo = "Operacion no reconocida.";
+    }
+
+    return calculo;
+}
+console.log(calculadora("*",3,3));
+
+// 50. Diseña un switch para cambiar entre diferentes idiomas de un sitio web.
+function cambiarIdioma(idioma) {
+    let mensaje;
+
+    switch (idioma.toLowerCase()) {
+        case "español":
+            mensaje = "El idioma del sitio web ha sido cambiado a español.";
+            break;
+        case "ingles":
+            mensaje = "The website language has been changed to English.";
+            break;
+        case "frances":
+            mensaje = "La langue du site web a été changée en français.";
+            break;
+        default:
+            mensaje = "Idioma no soportado.";
+    }
+
+    return mensaje;
+}
+console.log(cambiarIdioma("frances"));
+
+// 51. Implementa un bucle for que imprima todos los elementos de un array.
+function imprimirArray(array) {
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+    }
+}
+let miArray = [1, 2, 3, 4, 5];
+imprimirArray(miArray);
+
+// 52. Escribe un bucle for que multiplique todos los elementos de un array.
+function multiplicarArray(array) {
+    let producto = 1; // Inicializamos el producto en 1
+    for (let i = 0; i < array.length; i++) {
+        producto *= array[i]; // Multiplicamos cada elemento por el producto acumulado
+    }
+    return producto; 
+}
+let miArray2 = [1, 2, 3, 4, 5];
+console.log(multiplicarArray(miArray2));
+
+// 53. Crea un bucle for para encontrar el menor número en un array.
+function encontrarMenorNumero(array) {
+    let menor = array[0]; // Suponemos que el primer elemento es el menor
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < menor) {
+            menor = array[i]; // Si encontramos un número menor, lo actualizamos
+        }
+    }
+    return menor; // Devolvemos el menor número encontrado
+}
+let miArray3 = [5, 2, 9, 14, 7];
+console.log(encontrarMenorNumero(miArray3));
+
+// 54. Desarrolla un bucle for para verificar si un array contiene un elemento específico.
+function contieneElemento(array, elemento) {
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] === elemento) {
+            return true; // Se encontró el elemento, devolvemos true
+        }
+    }
+    // Si terminamos de recorrer el array y no encontramos el elemento, devolvemos false
+    return false;
+}
+let miArray4 = [4, 6, 8, 10, 12];
+console.log(contieneElemento(miArray4,6));
+
+// 55. Diseña un bucle for que copie un array en otro
+function copiarArray(original) {
+    let copia = []; // Creamos un nuevo array vacío para almacenar la copia
+
+    for (let i = 0; i < original.length; i++) {
+        copia.push(original[i]); // Agregamos cada elemento del array original a la copia
+    }
+
+    return copia; // Devolvemos la copia del array
+}
+let arrayOriginal = [1, 2, 3, 4, 5]
+console.log(copiarArray(arrayOriginal));
+
+// 56. Utiliza un bucle do-while para pedir al usuario que ingrese un número hasta que sea mayor que 10.
+// Simulación de entrada de datos
+function verificarNumero() {
+    let numeroInput = document.getElementById("numeroInput").value;
+    let numero = parseInt(numeroInput);
+
+    if (isNaN(numero)) {
+        document.getElementById("resultado").textContent = "Por favor, ingresa un número válido.";
+        return;
+    }
+
+    do {
+        if (numero <= 10) {
+            document.getElementById("resultado").textContent = "Por favor, ingresa un número mayor que 10.";
+            return;
+        }
+    } while (numero <= 10);
+
+    document.getElementById("resultado").textContent = "El número ingresado es: " + numero;
+}
+
+
+// 57.Implementa un for-in para mostrar todas las propiedades de un objeto.
+const usuario = {
+    nombre: "Juan",
+    edad: 30,
+    ciudad: "Madrid"
+};
+
+for (let propiedad in usuario) {
+    console.log(propiedad + ": " + usuario[propiedad]);
+}
+
+// 58. Usa un for-of para iterar sobre un array de nombres y saludar a cada uno.
+const nombres = ["Juan", "María", "Carlos"];
+for (let nombre of nombres) {
+    console.log("¡Hola",nombre+ "!");
+}
+
+// 59. Crea un forEach para aplicar un descuento del 10% a precios en un array.
+const precios = [100, 200, 300, 400];
+precios.forEach((precio, indice) => {
+    const descuento = precio * 0.1;
+    const precioConDescuento = precio - descuento;
+    console.log(`P.org:${precio} = P.descuento: ${precioConDescuento}`);
+});
+
+// 60. Escribe un código que use map para convertir todas las temperaturas de un array de Celsius a Fahrenheit.
+let temperaturasCelsius = [0, 10, 20, 30, 40];
+let temperaturasFahrenheit = temperaturasCelsius.map(celsius => {
+// Fórmula para convertir de Celsius a Fahrenheit: F = (C * 9/5) + 32
+return (celsius * 9/5) + 32;
+});
+console.log("Temperaturas en Fahrenheit:", temperaturasFahrenheit);
